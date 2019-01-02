@@ -19,7 +19,10 @@
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
           <input type="text" class="form-control" id="name" formControlName="name">
-          <app-form-field-error [formControl]="resourceForm.get('name')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('name')">
+          </app-form-field-error>
         </div>
 
         <div class="form-group col-md-8">
@@ -31,12 +34,9 @@
     </div>
   </div>
 
-  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
-    <strong>Erro no servidor:</strong>
-    <ul>
-      <li *ngFor="let error of serverErrorMessages">{{ error }}</li>
-    </ul>
-  </div>
+  <app-server-error-messages
+    [serverErrorMessages]="serverErrorMessages">
+  </app-server-error-messages>
 
   <button
     [disabled]="submittingForm || resourceForm.invalid"

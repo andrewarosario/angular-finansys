@@ -22,14 +22,20 @@
           <select name="type" id="type" formControlName="type" class="form-control">
             <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
           </select>
-          <app-form-field-error [formControl]="resourceForm.get('type')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('type')">
+          </app-form-field-error>
 
         </div>
         <!-- name -->
         <div class="form-group col-md-5">
           <label for="name">Lançamento</label>
           <input type="text" class="form-control" id="name" formControlName="name">
-          <app-form-field-error [formControl]="resourceForm.get('name')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('name')">
+          </app-form-field-error>
         </div>
 
         <!-- amount -->
@@ -41,7 +47,10 @@
             </div>
             <input [imask]="imaskConfig" type="text" class="form-control text-right" id="amount" formControlName="amount">
           </div>
-          <app-form-field-error [formControl]="resourceForm.get('amount')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('amount')">
+          </app-form-field-error>
         </div>
 
         <!-- date -->
@@ -57,7 +66,10 @@
             [locale]="ptBR"
             [showButtonBar]="true">
           </p-calendar>
-          <app-form-field-error [formControl]="resourceForm.get('date')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('date')">
+          </app-form-field-error>
         </div>
       </div>
 
@@ -77,7 +89,10 @@
               Pendente
             </label>
           </div>
-          <app-form-field-error [formControl]="resourceForm.get('paid')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('paid')">
+          </app-form-field-error>
         </div>
 
         <!-- categoryId -->
@@ -86,25 +101,28 @@
           <select name="categoryId" id="categoryId" formControlName="categoryId" class="form-control">
             <option *ngFor="let category of categories" [value]="category.id">{{ category.name  }}</option>
           </select>
-          <app-form-field-error [formControl]="resourceForm.get('categoryId')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('categoryId')">
+          </app-form-field-error>
         </div>
 
         <!-- description -->
         <div class="form-group col-md-7">
           <label for="description">Descrição</label>
           <input type="text" class="form-control" id="description" formControlName="description">
-          <app-form-field-error [formControl]="resourceForm.get('description')"></app-form-field-error>
+          <app-form-field-error
+            ngDefaultControl
+            [formControl]="resourceForm.get('description')">
+          </app-form-field-error>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
-    <strong>Erro no servidor:</strong>
-    <ul>
-      <li *ngFor="let error of serverErrorMessages">{{ error }}</li>
-    </ul>
-  </div>
+  <app-server-error-messages
+    [serverErrorMessages]="serverErrorMessages">
+  </app-server-error-messages>
 
   <button
     [disabled]="submittingForm || resourceForm.invalid"
